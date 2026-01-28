@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toko Saya</title>
+</head>
+<body>
+
+<h2>Daftar Produk</h2>
+<div id="produk">Sedang memuat...</div>
+
+<script>
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjEQwDdai23rgmNklnKWgfQPVMOOHgPStsYvgT1ccXYvFmz7sBEq6e8qtHbnnkTMFtdJ_pmEpudF9PF4n58Nqxx3puxUl4Odj-zbYCUvC2Tj3iKktMXNTvIGRzdSYD-BsKtd4bnQNfyOozKF5ZaX0QUcrY9hCqCudVUKzACL04VUr523Ljsaz6xr1g-Arb1ozmzC1tpinM9Q8bsY3oZDcJ0ktiixvK8bnfgH4DCC6grQhsyUQf-24wzwcmiS0iPRRkv4ZwOHrUucuIYzl2IfCMdfS4fvpsONKNJkl3E&lib=MoRP8IL9989O7a5wDOqrg6zWywheZZYEe";
+
+fetch(API_URL)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(data){
+    let html = "";
+    for (let i = 1; i < data.length; i++) {
+      html +=
+        "<div style='border:1px solid #000;padding:10px;margin:10px;width:200px'>" +
+        "<img src='" + data[i][6] + "' width='100%'>" +
+        "<p><b>" + data[i][1] + "</b></p>" +
+        "<p>Ukuran: " + data[i][2] + "</p>" +
+        "<p>Mutu: " + data[i][3] + "</p>" +
+        "<p>Harga: Rp " + data[i][4] + "</p>" +
+        "<p>Stock: " + data[i][5] + "</p>" +
+        "</div>";
+    }
+    document.getElementById("produk").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
